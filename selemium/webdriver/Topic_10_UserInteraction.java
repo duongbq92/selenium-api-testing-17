@@ -40,7 +40,9 @@ public class Topic_10_UserInteraction {
 	@BeforeClass
 	public void beforeClass() {
 		driver = new FirefoxDriver();
+		jsExecutor = (JavascriptExecutor)driver;
 		action = new Actions(driver);
+		
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		

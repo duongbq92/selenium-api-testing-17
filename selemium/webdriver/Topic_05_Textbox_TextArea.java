@@ -4,7 +4,10 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -29,7 +32,8 @@ public class Topic_05_Textbox_TextArea {
 
 	@BeforeClass
 	public void beforeClass() {
-		driver = new FirefoxDriver();
+		System.setProperty("webdriver.chrome.driver", ".\\browserDriverChrome\\chromedriver.exe");
+		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.get("http://demo.guru99.com/v4/");
@@ -78,6 +82,9 @@ public class Topic_05_Textbox_TextArea {
 	public void TC_03_InputNewCustomer() {
 		driver.findElement(By.xpath("//a[text()='New Customer']")).click();
 		driver.findElement(customerNamTextbox).sendKeys(name);
+		// remove attribute type = date 
+		removeAttributeInDOM("//input[@name='dob']","type");
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.findElement(datBrithTextbox).sendKeys(dateOfBirth);
 		driver.findElement(addressTextbox).sendKeys(address);
 		driver.findElement(cityNamTextbox).sendKeys(city);
@@ -101,9 +108,10 @@ public class Topic_05_Textbox_TextArea {
 		
 	}
 
-	@Test
-	public void TC_04_() {
-		driver.get("");
+	public void removeAttributeInDOM( String locator, String attributeRemove) {
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		WebElement element = driver.findElement(By.xpath(locator));
+		jsExecutor.executeScript("arguments[0].removeAttribute('" + attributeRemove + "');", element);
 	}
 	public int randomNumber() {
 		  Random rand = new Random();
@@ -111,7 +119,7 @@ public class Topic_05_Textbox_TextArea {
 	  }
 	@AfterClass
 	public void afterClass() {
-		driver.quit();
+//		driver.quit();
 	}
 
 }
