@@ -58,14 +58,14 @@ public class Topic_15_Wait_P5_Mixing {
 			System.out.println("Swith try");
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("TC_02:"+e.getMessage());
+			System.out.println("TC_02:Found :  "+e.getMessage());
 		}
 		System.out.println("TC_02: "+getDateTimeNow()+"---");
 	}
-	@Test
+//	@Test
 	public void TC_03_Element_Not_Found_Implicit_Greater_Than_Explicit() {
 		driver.get("https://www.facebook.com/");
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		explicitWait = new WebDriverWait(driver, 15);
 		System.out.println("TC_03_Element_Not_Found_Implicit_Greater_Than_Explicit: "+getDateTimeNow()+"---");
 		try {
@@ -73,11 +73,11 @@ public class Topic_15_Wait_P5_Mixing {
 			System.out.println("Swith try");
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("TC_03_Element_Not_Found_Implicit_Greater_Than_Explicit:"+e.getMessage());
+			System.out.println("TC_03_Element_Not_Found_Implicit_Greater_Than_Explicit:      "+e.getMessage());
 		}
 		System.out.println("TC_03_Element_Not_Found_Implicit_Greater_Than_Explicit: "+getDateTimeNow()+"---");
 	}
-//	@Test
+	@Test
 	public void TC_05_Element_Not_Found_Only_Explicit() {
 		driver.get("https://www.facebook.com/");
 		explicitWait = new WebDriverWait(driver, 10);
@@ -91,7 +91,7 @@ public class Topic_15_Wait_P5_Mixing {
 		}
 		System.out.println("TC_04_Element_Not_Found_Only_Explicit: "+getDateTimeNow()+"---");
 	}
-//	@Test
+	@Test
 	public void TC_06_Element_Not_Found_Only_Explicit_WebElement() {
 		driver.get("https://www.facebook.com/");
 		explicitWait = new WebDriverWait(driver, 10);
@@ -148,6 +148,6 @@ public class Topic_15_Wait_P5_Mixing {
 
 	@AfterClass
 	public void afterClass() {
-//		driver.quit();
+		driver.quit();
 	}
 }
